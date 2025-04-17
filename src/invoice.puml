@@ -1,0 +1,49 @@
+@startuml
+class Customer {
+    - name: String
+    - street: String
+    - city: String
+    - state: String
+    - zip: String
+    + toString(): String
+}
+
+class Product {
+    - name: String
+    - unitPrice: double
+    + getName(): String
+    + getUnitPrice(): double
+}
+
+class LineItem {
+    - product: Product
+    - quantity: int
+    + getTotal(): double
+    + toString(): String
+}
+
+class Invoice {
+    - customer: Customer
+    - items: List<LineItem>
+    + addItem(item: LineItem)
+    + getTotal(): double
+    + generateInvoiceText(): String
+}
+
+class InvoiceFrame {
+    - JTextFields
+    - JTextArea
+    - JButton
+}
+
+class InvoiceRunner {
+    + main(String[]): void
+}
+
+Customer --> Invoice
+Product --> LineItem
+LineItem --> Invoice
+Invoice --> InvoiceFrame
+InvoiceFrame --> InvoiceRunner
+
+@enduml
